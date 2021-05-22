@@ -1,22 +1,13 @@
 import React from 'react';
-
-import { Joke } from '../Joke';
+import Joke from '../Joke';
 
 export const Jokes = (props) => {
   return (
     <>
       <ul>
-        {props.listOfJokes.map((Joke) => (
-          <Joke
-            key={joke.id}
-            id={joke.id}
-            avatar={joke.avatar}
-            name={joke.name}
-            text={joke.text}
-            likes={joke.likes}
-            dislakes={joke.dislakes}
-          ></Joke>
-        ))}
+        {props.listOfJokes.map((joke) => {
+          <Joke {...joke} key={joke.id} />;
+        })}
       </ul>
     </>
   );

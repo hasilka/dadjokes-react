@@ -1,30 +1,30 @@
 import React, { useState } from 'react';
+import './style.css';
+import jokes from '.jokes';
 
-export const Joke = (props) => {
-  const [like, setLikes] = useState();
+export const Joke = (jokes) => {
+  const [like, setLikes] = useState(0);
   const handlePlusClick = () => {
     setLikes(like + 1);
   };
   return (
-    <div className={`joke`}>
+    <div className="jokes">
       <div className="joke__body">
         <div className="joke__user">
-          <img className="user-avatar" src={joke.avatar} />
-          <p className="user-name">{joke.name}</p>
+          <img className="user-avatar" src={jokes.avatar} />
+          <p className="user-name">{jokes.name}</p>
         </div>
 
-        <p className="joke__text">{joke.text}</p>
+        <p className="joke__text">{jokes.text}</p>
       </div>
       <div className="joke__likes">
         <button
           id="btn-up"
           className="btn-like btn-like--up"
           onClick={handlePlusClick}
-        >
-          {' '}
-        </button>
+        ></button>
         <span id="likes-up" class="likes-count likes-count--up">
-          {joke.likes}
+          {jokes.likes}
         </span>
         <button
           id="btn-down"
@@ -32,7 +32,7 @@ export const Joke = (props) => {
           onClick={handlePlusClick}
         ></button>
         <span id="likes-down" className="likes-count likes-count--down">
-          {joke.dislake}
+          {jokes.dislakes}
         </span>
       </div>
     </div>
