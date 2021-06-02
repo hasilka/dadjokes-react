@@ -1,39 +1,38 @@
 import React, { useState } from 'react';
 import './style.css';
-import jokes from '.jokes';
 
-export const Joke = (jokes) => {
-  const [like, setLikes] = useState(0);
-  const handlePlusClick = () => {
-    setLikes(like + 1);
+export const Joke = ({ userAvatar, userName, text, likes, dislikes }) => {
+  const [likesUp, setLikesUp] = useState(likes);
+  const [dislikesUp, setDislikesUp] = useState(dislikes);
+
+  const handleLikeClick = () => {
+    setLikesUp(likesUp + 1);
   };
+  const handleDislikeClick = () => {
+    setDislikesUp(dislikesUp + 1);
+  };
+
   return (
-    <div className="jokes">
+    <div className={`joke ${likesUp > dislikesUp ? null : 'joke--not-funny'}`}>
       <div className="joke__body">
         <div className="joke__user">
-          <img className="user-avatar" src={jokes.avatar} />
-          <p className="user-name">{jokes.name}</p>
+          <img className="user-avatar" src={userAvatar} />
+          <p className="user-name">{userName}</p>
         </div>
 
-        <p className="joke__text">{jokes.text}</p>
+        <p className="joke__text">{text}</p>
       </div>
       <div className="joke__likes">
         <button
-          id="btn-up"
           className="btn-like btn-like--up"
-          onClick={handlePlusClick}
+          onClick={handleLikeClick}
         ></button>
-        <span id="likes-up" class="likes-count likes-count--up">
-          {jokes.likes}
-        </span>
+        <span class="likes-count likes-count--up">{likesUp}</span>
         <button
-          id="btn-down"
           className="btn-like btn-like--down"
-          onClick={handlePlusClick}
+          onClick={handleDislikeClick}
         ></button>
-        <span id="likes-down" className="likes-count likes-count--down">
-          {jokes.dislakes}
-        </span>
+        <span className="likes-count likes-count--down">{dislikesUp}</span>
       </div>
     </div>
   );

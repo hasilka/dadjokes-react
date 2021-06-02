@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
-import { Jokes } from './Jokes';
+import { Joke } from './Joke/index';
+import { jokes } from './jokes.js';
+import './style.css';
 
-const App = () => {
-  const [listOfJokes, setListOfJokes] = useState([]);
-
-  return (
-    <>
-      <div className="container">
-        <main>
-          <Jokes listOfJokes={listOfJokes} />
-        </main>
-      </div>
-    </>
-  );
-};
+const App = () => (
+  <div className="container">
+    {jokes.map((joke) => {
+      return (
+        <Joke
+          key={joke.id}
+          userAvatar={joke.avatar}
+          userName={joke.name}
+          text={joke.text}
+          likes={joke.likes}
+          dislikes={joke.dislikes}
+        ></Joke>
+      );
+    })}
+  </div>
+);
 
 render(<App />, document.querySelector('#app'));
